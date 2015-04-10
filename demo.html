@@ -6,6 +6,7 @@
         <script src="openseadragon-svg-overlay.js"></script>
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="helper/openseadragon-imaginghelper.js"></script>
         <style type="text/css">
 
             html,
@@ -18,7 +19,7 @@
 
         </style>
         <script>
-
+			var addSVG;
             // ----------
             App = {
                 // ----------
@@ -63,6 +64,18 @@
                         .on("click", function() {
                             console.log('click', arguments);
                         });
+						
+					addSVG = function(a,b) {
+						d3.select(svgNode).append("circle")
+							.style('fill', '#ff0')
+							.attr("cx", a)
+							.attr("r", 0.1)
+							.attr("cy", b)
+							.attr("pointer-events", "fill")
+							.on("click", function() {
+								console.log('click', arguments);
+							});
+					}
 
                     $(window).resize(function() {
                         self.viewer.svgOverlay('resize');
